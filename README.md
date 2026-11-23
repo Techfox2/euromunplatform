@@ -108,3 +108,4 @@ docs/VISION.md         product vision and roadmap
 
 - Next.js **Cache Components** are turned off because OpenNext on Cloudflare doesn't fully support them yet.
 - `proxy.ts` runs on the Node.js runtime, which OpenNext supports on Workers as **experimental**. It works in local Workers previews. If it causes problems in production, fall back to an edge `middleware.ts`.
+- `package.json` pins the `cookie` package used by `@opennextjs/aws` to 0.7.2 (via `overrides`). With `cookie@1.x`, OpenNext's Node-middleware bundle crashes on every request that has a cookie (`Cannot read properties of undefined (reading 'parse')`). Remove the override once OpenNext fixes its `cookie` import.
