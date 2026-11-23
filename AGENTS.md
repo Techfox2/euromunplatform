@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Product vision, modules and roadmap: `docs/VISION.md`. Read it before starting a feature.
 - Hosting is Cloudflare Workers via `@opennextjs/cloudflare`. Verify changes with `npm run preview` (Workers runtime), not only `next dev`.
 - Keep `cacheComponents` off until OpenNext Cloudflare supports it (pages 500 on Workers otherwise).
-- Supabase: every schema change is a new file in `supabase/migrations/`. Every table gets RLS enabled, with policies built on `is_superadmin()`, `has_edition_role()` and `is_edition_admin()`. Update `src/lib/database.types.ts` (`npm run db:types`).
+- Supabase: every schema change is a new file in `supabase/migrations/`. Every table gets RLS enabled, with policies built on `private.is_superadmin()`, `private.has_edition_role()` and `private.is_edition_admin()` (SECURITY DEFINER helpers belong in the `private` schema, never `public`). After DDL, run the Supabase security advisor. Update `src/lib/database.types.ts` (`npm run db:types`).
 - Use `@/lib/supabase/server` in server code and `@/lib/supabase/client` in client components; get the user via `getCurrentUser()` in `@/lib/auth`.
 - Every Server Action must check authentication/authorization itself.
 - English UI only. Mobile-first.

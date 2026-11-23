@@ -110,14 +110,7 @@ export type Database = {
       };
     };
     Views: { [_ in never]: never };
-    Functions: {
-      is_superadmin: { Args: Record<string, never>; Returns: boolean };
-      has_edition_role: {
-        Args: { p_edition_id: string; p_role: AppRole };
-        Returns: boolean;
-      };
-      is_edition_admin: { Args: { p_edition_id: string }; Returns: boolean };
-    };
+    Functions: { [_ in never]: never };
     Enums: {
       edition_phase: EditionPhase;
       app_role: AppRole;

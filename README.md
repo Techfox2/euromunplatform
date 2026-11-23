@@ -4,6 +4,12 @@ The platform for the EUROMUN conference: registration, manual country allocation
 
 See [`docs/VISION.md`](docs/VISION.md) for the product vision, modules, data model and roadmap.
 
+## Live prototype
+
+- App: https://euromunplatform.techstorm22.workers.dev
+- Hosting: Cloudflare Worker `euromunplatform`, built by Cloudflare Workers Builds on every push to the repo's production branch (`claude/determined-goodall-2vmvdo` for now; switch to `main` once it exists).
+- Database: Supabase project `Euromunplatform` (ref `vqlcvycgqojngwoztomc`, region Tokyo).
+
 ## Stack
 
 - **Next.js 16** (App Router, TypeScript, Tailwind CSS 4)
@@ -62,7 +68,9 @@ update public.profiles set is_superadmin = true where email = 'you@example.com';
 
 Manual: `npx wrangler login`, then `npm run deploy` with the `NEXT_PUBLIC_SUPABASE_*` variables set in your shell or `.env.local` (they're inlined at build time).
 
-Automatic: `.github/workflows/deploy.yml` deploys on every push to `main`. Add these repository secrets first:
+Automatic (current setup): Cloudflare Workers Builds is connected to this repo and runs `npx opennextjs-cloudflare build` + `deploy` on every push to the production branch. The `NEXT_PUBLIC_SUPABASE_*` and `NEXT_PUBLIC_SITE_URL` build variables are set in the Worker's build settings in the Cloudflare dashboard.
+
+Alternative: `.github/workflows/deploy.yml` deploys from GitHub Actions on every push to `main`. It's only needed if you move away from Workers Builds, and it needs these repository secrets:
 
 - `CLOUDFLARE_API_TOKEN` (a token with the "Edit Cloudflare Workers" template)
 - `CLOUDFLARE_ACCOUNT_ID`
@@ -94,7 +102,7 @@ docs/VISION.md         product vision and roadmap
 
 - Every conference year is an **edition**. Users get roles **per edition**: `admin` (secretariat), `advisor`, `chair`, `delegate`.
 - `profiles.is_superadmin` marks platform owners, who can create editions and manage everything.
-- Access is enforced in the database with Row Level Security, using the helpers `is_superadmin()`, `has_edition_role(edition, role)` and `is_edition_admin(edition)`. New tables should use these helpers in their policies.
+- Access is enforced in the database with Row Level Security, using the helpers `private.is_superadmin()`, `private.has_edition_role(edition, role)` and `private.is_edition_admin(edition)`. They live in the `private` schema so they can't be called through the public API. New tables should use these helpers in their policies.
 
 ## Known limitations (prototype)
 

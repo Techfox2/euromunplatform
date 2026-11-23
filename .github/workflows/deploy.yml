@@ -6,9 +6,8 @@ name: Deploy
 #   NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 # Optional repository variable: NEXT_PUBLIC_SITE_URL
 
+# Manual only: production deploys run through Cloudflare Workers Builds.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
