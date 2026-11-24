@@ -183,8 +183,8 @@ schedule_items      (id, edition_id, title, starts_at, ends_at, location)
 
 | Phase | Goal | Contents |
 |---|---|---|
-| **0. Foundations** | Skeleton deployed on Cloudflare | Repo, Next.js + Supabase setup, auth, roles, edition model, CI, deploy pipeline |
-| **1. Public site + registration** | Schools can apply | Public pages, applications, secretariat review |
+| **0. Foundations** ✅ | Skeleton deployed on Cloudflare | Repo, Next.js + Supabase setup, auth, roles, edition model, CI, deploy pipeline |
+| **1. Public site + registration** ✅ | Schools can apply | Public pages, applications, secretariat review |
 | **2. Allocation + preparation** | Delegates know their country | Manual allocation board, committee pages, position paper upload, announcements |
 | **3. Live session prototype** | Run one mock committee | Roll call, floor requests, debate timers, points, motions, voting with chair proxy, notes |
 | **4. Resolutions in session** | Full BERMUN resolution workflow | Collaborative drafting, submitters, approval, amendments (1st/2nd degree), voting on resolutions |

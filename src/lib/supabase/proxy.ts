@@ -8,7 +8,7 @@ import {
 } from "./env";
 
 /** Route prefixes that require a signed-in user. */
-const PROTECTED_PREFIXES = ["/dashboard"];
+const PROTECTED_PREFIXES = ["/dashboard", "/apply", "/admin"];
 
 /**
  * Refreshes the Supabase session cookie on every request and redirects
